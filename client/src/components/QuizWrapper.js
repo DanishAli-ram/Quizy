@@ -8,7 +8,7 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import QuizPage from "./QuizPage";
 import Result from "./Result";
 
@@ -62,7 +62,7 @@ class QuizWrapper extends React.Component {
 
   onNextClick = (term) => {
     if (count === 4) {
-      return <Result />;
+        this.props.history.push("/result");
     }
     count++;
     this.setState({ arr: array[count] });
@@ -70,7 +70,7 @@ class QuizWrapper extends React.Component {
 
   onBackClick = (term) => {
     if (count === 0) {
-      return <Result />;
+        this.props.history.push("/");
     }
     count--;
     this.setState({ arr: array[count] });
