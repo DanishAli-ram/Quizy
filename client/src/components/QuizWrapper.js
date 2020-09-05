@@ -1,57 +1,47 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
 import QuizPage from "./QuizPage";
-import Result from "./Result";
+import Result from './Result';
 
 const array = [
   {
-    question:
-      "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.",
-    firstRadio: "first radio",
-    secondRadio: "second radio",
-    thirdRadio: "third radio",
-    fourthRadio: "fourth radio",
+    question: "When i had you to myself, i didnt want you around",
+    firstRadio: "The Love You Save",
+    secondRadio: "I Want You Back", // correct one
+    thirdRadio: "I'll Be There",
+    fourthRadio: "Mama's pearl",
+    correctone: "I Want You Back"
   },
   {
-    question:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima facilis dolores delectus exercitationem? Delectus, voluptatem animi architecto ab velit magnam odit. Tempore consectetur id sed, sunt perferendis fugiat quam iure.",
-    firstRadio: "first radio",
-    secondRadio: "second radio",
-    thirdRadio: "third radio",
-    fourthRadio: "fourth radio",
+    question: "So DJ spin the sounds, there aint no way that you're gonna sit us down",
+    firstRadio: "Off The Wall",
+    secondRadio: "Girlfriend",
+    thirdRadio: "Burn This Disco Out", // correct one
+    fourthRadio: "Rock With You",
+    correctone: "Burn This Disco Out"
   },
   {
-    question:
-      "This is a simple hero unit, dsfdskjdskjfkldsjfkldsjflkdsjklfjdsklfjdslkfjdslkjfkldjfkldsjfkldsjfkldsjfkldsjflkdsjklf",
-    firstRadio: "first radio",
-    secondRadio: "second radio",
-    thirdRadio: "third radio",
-    fourthRadio: "fourth radio",
+    question: "In time I knew that love would bring, This happiness to me",
+    firstRadio: "Bad",
+    secondRadio: "You Rock My World", // correct one
+    thirdRadio: "The Love You Save",
+    fourthRadio: "Loves gone Bad",
+    correctone: "You Rock My World"
   },
   {
-    question:
-      "he is a fgoog bouy scout and a man of power component for calling extra attention to featured content or information.",
-    firstRadio: "first radio",
-    secondRadio: "second radio",
-    thirdRadio: "third radio",
-    fourthRadio: "fourth radio",
+    question: "Billie Jean was always talking when nobody else was talking, telling lies and rubbing shoulders so they called her mouth a motor",
+    firstRadio: "Wanna Be Starting Something", // correct one
+    secondRadio: "Billie Jean",
+    thirdRadio: "Thriller",
+    fourthRadio: "Human Nature",
+    correctone: "Wanna Be Starting Something"
   },
   {
-    question:
-      "what the hell am i doing here im writing code which i dont know attention to featured content or information.",
-    firstRadio: "first radio",
-    secondRadio: "second radio",
-    thirdRadio: "third radio",
-    fourthRadio: "fourth radio",
+    question: "If you want to know why there is a love that cannot lie, love is strong it only cares for joyful giving",
+    firstRadio: "Earth Song",
+    secondRadio: "We are the world",
+    thirdRadio: "What more can i give",
+    fourthRadio: "Heal the world", // correct one
+    correctone: "Heal the world"
   },
 ];
 
@@ -60,7 +50,7 @@ let count = 0;
 class QuizWrapper extends React.Component {
   state = { arr: array[0] };
 
-  onNextClick = (term) => {
+  onNextClick = () => {
     if (count === 4) {
         this.props.history.push("/result");
     }
@@ -68,7 +58,7 @@ class QuizWrapper extends React.Component {
     this.setState({ arr: array[count] });
   };
 
-  onBackClick = (term) => {
+  onBackClick = () => {
     if (count === 0) {
         this.props.history.push("/");
     }
@@ -77,6 +67,9 @@ class QuizWrapper extends React.Component {
   };
 
   render() {
+    if(this.state.arr === undefined){
+      return <div></div>
+    }
     return (
       <div>
         <QuizPage
@@ -85,6 +78,7 @@ class QuizWrapper extends React.Component {
           secondRadio={this.state.arr.secondRadio}
           thirdRadio={this.state.arr.thirdRadio}
           fourthRadio={this.state.arr.fourthRadio}
+          correctone= {this.state.arr.correctone}
           onNext={this.onNextClick}
           onBack={this.onBackClick}
         />

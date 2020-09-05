@@ -1,6 +1,13 @@
 import { combineReducers } from 'redux';
-import exampleReducer from './exampleReducer';
+
+const selectedSongReducer = (selectedSong = null, action) => {
+    if(action.type=== 'SONG_SELECTED') {
+        return action.payload;
+    }
+    
+    return selectedSong;
+}
 
 export default combineReducers({
-    example: exampleReducer
+    selectedSong: selectedSongReducer
 })
